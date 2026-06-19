@@ -1,0 +1,55 @@
+{
+  "story": "Once upon a time, a clever little robot named Pip lost his shiny blue gear in the Whispering Woods...",
+  "quizzes": [
+    {
+      "question": "What colour was Pip the Robot's lost gear?",
+      "options": ["Red", "Green", "Blue", "Yellow"],
+      "answer": "Blue"
+    },
+    {
+      "question": "What kind of creature or object is Pip?",
+      "options": ["A magical fairy", "A clever little robot", "A wild animal", "A flying spaceship"],
+      "answer": "A clever little robot"
+    },
+    {
+      "question": "Where did Pip lose his blue gear?",
+      "options": ["On the Moon", "In the Whispering Woods", "In the deep blue ocean", "At a robot school"],
+      "answer": "In the Whispering Woods"
+    },
+    {
+      "question": "How did the story describe the lost gear?",
+      "options": ["Rusty and old", "Shiny and blue", "Heavy and golden", "Tiny and green"],
+      "answer": "Shiny and blue"
+    },
+    {
+      "question": "What adjective was used to describe Pip?",
+      "options": ["Silly", "Clever", "Grumpy", "Sleepy"],
+      "answer": "Clever"
+    },
+    {
+      "question": "What kind of woods did Pip get lost in?",
+      "options": ["The Singing Woods", "The Whispering Woods", "The Silent Woods", "The Giant Woods"],
+      "answer": "The Whispering Woods"
+    },
+    {
+      "question": "Who is the main robot character of this story?",
+      "options": ["Pep", "Pop", "Pip", "Zip"],
+      "answer": "Pip"
+    },
+    {
+      "question": "What do you think gears help a robot do?",
+      "options": ["Sleep better", "Turn and move around", "Eat delicious food", "Read story books"],
+      "answer": "Turn and move around"
+    },
+    {
+      "question": "What color are gears usually made of?",
+      "options": ["Metallic silver or copper", "Rainbow colors", "Transparent glass", "Soft cotton"],
+      "answer": "Metallic silver or copper"
+    },
+    {
+      "question": "Who is guiding you through Pip's adventure today?",
+      "options": ["A scary dragon", "StoryBuddy and PIP", "A math teacher", "A security guard"],
+      "answer": "StoryBuddy and PIP"
+    }
+  ]
+}

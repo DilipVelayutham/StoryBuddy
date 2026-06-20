@@ -137,7 +137,7 @@ class StoryContent extends ConsumerWidget {
             const SizedBox(height: 12),
             BubblyButton.text(
               onPressed: () => notifier.startReading(),
-              label: 'Retry voice 🎙️',
+              label: 'Retry voice',
               backgroundColor: AppColors.skyBlue,
             ),
           ],

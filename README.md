@@ -1,11 +1,10 @@
-# StoryBuddy 🤖
-### *Listen • Imagine • Learn*
+# StoryBuddy
 
 StoryBuddy is a joyful, AI-powered storytelling companion for children aged 8–14. It is built as a highly polished, production-ready single-screen application in **Flutter** using **Riverpod** for state management, optimized to deliver a solid 60fps experience even on mid-range Android devices (~3GB RAM).
 
 ---
 
-## 🛠️ Key Architectural Decisions & Why Flutter?
+## Key Architectural Decisions & Why Flutter?
 
 We chose **Flutter** as the development framework for the following reasons:
 1. **Visual Consistency & Control**: Children's apps require custom shapes, animations, and high-fidelity layouts. Flutter's Skia/Impeller rendering engines allow us to control every pixel directly.
@@ -14,7 +13,7 @@ We chose **Flutter** as the development framework for the following reasons:
 
 ---
 
-## 🧠 State Machine Mappings
+## State Machine Mappings
 
 We decouple the application into three independent, synchronized state machines driven by Riverpod `StateNotifier`s:
 
@@ -42,7 +41,7 @@ We decouple the application into three independent, synchronized state machines 
 
 ---
 
-## 🔄 Narration-to-Quiz Transitions
+## Narration-to-Quiz Transitions
 
 The transition between the narration ending and the quiz appearing is managed reactively:
 1. When the user taps **"Read Me a Story"**, the `StoryBuddyNotifier` triggers `TtsService.speak()`.
@@ -53,7 +52,7 @@ The transition between the narration ending and the quiz appearing is managed re
 
 ---
 
-## 📊 Data-Driven Quiz Renderer
+## Data-Driven Quiz Renderer
 
 The quiz renderer is **fully dynamic** and generated from JSON:
 *   **Asset Loading**: The app reads from `assets/data/story_quiz.json` and parses it into structured `StoryModel` and `QuizModel` classes.
@@ -63,7 +62,7 @@ The quiz renderer is **fully dynamic** and generated from JSON:
 
 ---
 
-## 💾 Caching Strategy (Remote Audio Concept)
+## Caching Strategy (Remote Audio Concept)
 
 If we were to integrate a remote audio API (e.g., ElevenLabs / Amazon Polly):
 1. **Hashing URL**: We would hash the input text or API request parameters to create a unique cache key (e.g., `md5(story_text)`).
@@ -74,7 +73,7 @@ If we were to integrate a remote audio API (e.g., ElevenLabs / Amazon Polly):
 
 ---
 
-## 🛠️ Audio Loading, Failures & Error Resilience
+## Audio Loading, Failures & Error Resilience
 
 The application is built to be resilient:
 *   **TTS Initialization Guard**: If native TTS fails (e.g. missing speech engines on low-end Androids), the app catches the exception, updates state to `StoryStatus.error`, shows a helpful message ("PIP is resting his voice! read along below"), and **automatically reveals the quiz** so the user is never stuck.
@@ -83,7 +82,7 @@ The application is built to be resilient:
 
 ---
 
-## ⚡ Performance Optimization for 3GB RAM Devices
+## Performance Optimization for 3GB RAM Devices
 
 To maintain a steady 60fps on modest Android hardware:
 *   **CustomPainter Canvas Drawing**: Zero texture memory allocation compared to heavy animations or images. PIP is drawn as pure vector paths.
@@ -93,7 +92,7 @@ To maintain a steady 60fps on modest Android hardware:
 
 ---
 
-## 🤖 AI Usage & Judgement Reflections
+## AI Usage & Judgement Reflections
 
 ### Where AI Was Used
 AI was used to:
@@ -110,7 +109,7 @@ AI was used to:
 
 ---
 
-## 🏁 Submission Verification Checklist
+## Submission Verification Checklist
 
 *   [x] Feature-First Scalable Architecture
 *   [x] State Management decoupled from UI via Riverpod

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../core/extensions/context_extensions.dart';
+import '../../data/models/story_model.dart';
 import '../providers/pip_provider.dart';
 import '../providers/quiz_provider.dart';
 import '../providers/story_provider.dart';
@@ -24,7 +25,6 @@ class _StoryBuddyScreenState extends ConsumerState<StoryBuddyScreen> {
   @override
   void initState() {
     super.initState();
-    // Confetti runs for 2 seconds on success
     _confettiController = ConfettiController(duration: const Duration(seconds: 2));
   }
 
@@ -34,9 +34,36 @@ class _StoryBuddyScreenState extends ConsumerState<StoryBuddyScreen> {
     super.dispose();
   }
 
+  Widget _buildKidFriendlyTransition(Widget child, Animation<double> animation) {
+    return SlideTransition(
+      position: Tween<Offset>(
+        begin: const Offset(1.0, 0.0),
+        end: Offset.zero,
+      ).animate(CurvedAnimation(
+        parent: animation,
+        curve: const Interval(0.0, 1.0, curve: Curves.elasticOut),
+      )),
+      child: ScaleTransition(
+        scale: Tween<double>(
+          begin: 0.6,
+          end: 1.0,
+        ).animate(CurvedAnimation(
+          parent: animation,
+          curve: const Interval(0.0, 0.8, curve: Curves.easeOutBack),
+        )),
+        child: FadeTransition(
+          opacity: animation,
+          child: child,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final pipState = ref.watch(pipStateProvider);
+    final storyState = ref.watch(storyBuddyNotifierProvider);
+    final activeStory = storyState.story;
 
     // Listen to quiz provider changes to play confetti on success
     ref.listen<QuizBuddyState>(quizNotifierProvider, (previous, next) {
@@ -49,11 +76,11 @@ class _StoryBuddyScreenState extends ConsumerState<StoryBuddyScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          // 1. Magical background gradient
-          _buildBackgroundGradient(),
+          // 1. Magical background gradient (dynamically color-transitioning)
+          _buildBackgroundGradient(activeStory),
 
-          // 2. Translucent floating blobs (for depth and glassmorphism)
-          _buildBackgroundBlobs(),
+          // 2. Translucent floating blobs (dynamically color-transitioning)
+          _buildBackgroundBlobs(activeStory),
 
           // 3. Screen content
           SafeArea(
@@ -65,25 +92,40 @@ class _StoryBuddyScreenState extends ConsumerState<StoryBuddyScreen> {
                 // Main content scrolling area
                 Expanded(
                   child: SingleChildScrollView(
-                    physics: const BouncingScrollPhysics(),
-                    padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 24.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        // Centered PIP Character
-                        Center(
-                          child: PipCompanion(state: pipState),
-                        ),
-                        const SizedBox(height: 12),
-                        
-                        // Story card
-                        const StoryContent(),
-                        const SizedBox(height: 20),
-                        
-                        // Dynamic JSON Quiz Renderer (Slides up when ready)
-                        const QuizRenderer(),
-                      ],
-                    ),
+                     physics: const BouncingScrollPhysics(),
+                     padding: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 24.0),
+                     child: Column(
+                       crossAxisAlignment: CrossAxisAlignment.stretch,
+                       children: [
+                         // Centered PIP Character (Animated Switcher on story change)
+                         AnimatedSwitcher(
+                           duration: const Duration(milliseconds: 1000),
+                           transitionBuilder: _buildKidFriendlyTransition,
+                           child: Center(
+                             key: ValueKey(activeStory?.id ?? 'none'),
+                             child: PipCompanion(
+                               state: pipState,
+                               story: activeStory,
+                             ),
+                           ),
+                         ),
+                         const SizedBox(height: 12),
+                         
+                         // Story card (Animated Switcher on story change)
+                         AnimatedSwitcher(
+                           duration: const Duration(milliseconds: 1000),
+                           transitionBuilder: _buildKidFriendlyTransition,
+                           child: KeyedSubtree(
+                             key: ValueKey(activeStory?.id ?? 'none'),
+                             child: const StoryContent(),
+                           ),
+                         ),
+                         const SizedBox(height: 20),
+                         
+                         // Dynamic JSON Quiz Renderer (Slides up when ready)
+                         const QuizRenderer(),
+                       ],
+                     ),
                   ),
                 ),
               ],
@@ -116,31 +158,39 @@ class _StoryBuddyScreenState extends ConsumerState<StoryBuddyScreen> {
     );
   }
 
-  Widget _buildBackgroundGradient() {
-    return Container(
-      decoration: const BoxDecoration(
+  Widget _buildBackgroundGradient(StoryModel? story) {
+    final colors = story?.pipTheme.backgroundColors ?? AppColors.backgroundGradient;
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 800),
+      curve: Curves.easeInOut,
+      decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: AppColors.backgroundGradient,
+          colors: colors,
         ),
       ),
     );
   }
 
-  Widget _buildBackgroundBlobs() {
+  Widget _buildBackgroundBlobs(StoryModel? story) {
+    final primary = story?.pipTheme.primaryColor ?? AppColors.candyPink;
+    final secondary = story?.pipTheme.secondaryColor ?? AppColors.coralOrange;
+    final tertiary = story?.pipTheme.secondaryColor ?? AppColors.sunshineYellow;
+
     return Stack(
       children: [
         // Coral Top-Right blob
         Positioned(
           top: -60,
           right: -40,
-          child: Container(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 800),
             width: 200,
             height: 200,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: AppColors.coralOrange.withOpacity(0.18),
+              color: secondary.withOpacity(0.18),
             ),
           ),
         ),
@@ -148,12 +198,13 @@ class _StoryBuddyScreenState extends ConsumerState<StoryBuddyScreen> {
         Positioned(
           top: 280,
           left: -80,
-          child: Container(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 800),
             width: 250,
             height: 250,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: AppColors.candyPink.withOpacity(0.12),
+              color: primary.withOpacity(0.12),
             ),
           ),
         ),
@@ -161,12 +212,13 @@ class _StoryBuddyScreenState extends ConsumerState<StoryBuddyScreen> {
         Positioned(
           bottom: -40,
           right: -30,
-          child: Container(
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 800),
             width: 220,
             height: 220,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: AppColors.sunshineYellow.withOpacity(0.18),
+              color: tertiary.withOpacity(0.18),
             ),
           ),
         ),
@@ -179,48 +231,14 @@ class _StoryBuddyScreenState extends ConsumerState<StoryBuddyScreen> {
       padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
       child: Row(
         children: [
-          // Logo Badge
-          Container(
-            padding: const EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16),
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.primaryPurple.withOpacity(0.2),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: const Text(
-              '🤖',
-              style: TextStyle(fontSize: 24),
-            ),
-          ),
-          const SizedBox(width: 12),
           // App Title
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                AppStrings.appName,
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                      color: AppColors.textDark,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 26,
-                    ),
-              ),
-              Text(
-                AppStrings.appTagline,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: AppColors.primaryPurple,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 0.5,
-                      fontSize: 12,
-                    ),
-              ),
-            ],
+          Text(
+            AppStrings.appName,
+            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                  color: AppColors.textDark,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 26,
+                ),
           ),
         ],
       ),

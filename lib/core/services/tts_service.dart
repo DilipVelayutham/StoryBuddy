@@ -9,13 +9,46 @@ class TtsService {
   Future<bool> init() async {
     if (_isInitialized) return true;
     try {
-      // Setup parameters for children (slower speech, cute higher-pitched robot tone)
-      await _flutterTts.setSpeechRate(0.42); 
-      await _flutterTts.setPitch(1.4);      
+      // Setup parameters for children (slower speech, soft warm voice tone)
+      await _flutterTts.setSpeechRate(0.40); 
+      await _flutterTts.setPitch(1.2); // Warm and cute, not too high
       await _flutterTts.setVolume(1.0);
 
       // Attempt to configure standard US English accent
       await _flutterTts.setLanguage('en-US');
+
+      try {
+        final List<dynamic>? voices = await _flutterTts.getVoices;
+        if (voices != null) {
+          dynamic femaleVoice;
+          for (var voice in voices) {
+            if (voice is Map) {
+              final name = voice['name']?.toString().toLowerCase() ?? '';
+              final locale = voice['locale']?.toString().toLowerCase() ?? '';
+              if (locale.contains('en-us') || locale.contains('en_us')) {
+                if (name.contains('female') || 
+                    name.contains('zira') || 
+                    name.contains('samantha') || 
+                    name.contains('sfg') || 
+                    name.contains('lisa') || 
+                    name.contains('jessica') || 
+                    name.contains('wavenet-c') || 
+                    name.contains('wavenet-e') || 
+                    name.contains('wavenet-f')) {
+                  femaleVoice = voice;
+                  break;
+                }
+              }
+            }
+          }
+          if (femaleVoice != null) {
+            await _flutterTts.setVoice({
+              "name": femaleVoice["name"],
+              "locale": femaleVoice["locale"]
+            });
+          }
+        }
+      } catch (_) {}
 
       _isInitialized = true;
       return true;

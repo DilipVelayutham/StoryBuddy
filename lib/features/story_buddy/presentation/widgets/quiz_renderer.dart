@@ -5,13 +5,173 @@ import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
 import '../../../../shared/animations/fade_in_transition.dart';
 import '../../../../shared/widgets/bubbly_button.dart';
+import '../../data/models/story_model.dart';
 import '../providers/quiz_provider.dart';
 import '../providers/story_provider.dart';
 import '../providers/pip_provider.dart';
 import 'glass_card.dart';
+import 'pip_companion.dart';
 
 class QuizRenderer extends ConsumerWidget {
   const QuizRenderer({super.key});
+
+  void _showChooseStoryDialog(BuildContext context, WidgetRef ref, List<StoryModel> stories) {
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Color(0xFFF5F3FF),
+                  Color(0xFFE0E7FF),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(32),
+              border: Border.all(color: Colors.white, width: 3),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.15),
+                  blurRadius: 20,
+                  offset: const Offset(0, 10),
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.fromLTRB(16, 20, 16, 20),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Dialog Title
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      '🗺️',
+                      style: TextStyle(fontSize: 32),
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      'Choose Story!',
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                            color: AppColors.textDark,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 16),
+                
+                // Grid of 2x5 stories
+                Flexible(
+                  child: GridView.builder(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 12,
+                      mainAxisSpacing: 12,
+                      childAspectRatio: 0.70,
+                    ),
+                    itemCount: stories.length,
+                    itemBuilder: (context, index) {
+                      final story = stories[index];
+                      final theme = story.pipTheme;
+                      
+                      return InkWell(
+                        onTap: () {
+                          ref.read(storyBuddyNotifierProvider.notifier).selectStory(story);
+                          Navigator.of(dialogContext).pop();
+                        },
+                        borderRadius: BorderRadius.circular(24),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                theme.primaryColor.withOpacity(0.2),
+                                theme.secondaryColor.withOpacity(0.2),
+                              ],
+                            ),
+                            borderRadius: BorderRadius.circular(24),
+                            border: Border.all(
+                              color: theme.primaryColor.withOpacity(0.5),
+                              width: 2,
+                            ),
+                            boxShadow: [
+                              BoxShadow(
+                                color: theme.primaryColor.withOpacity(0.1),
+                                blurRadius: 8,
+                                offset: const Offset(0, 4),
+                              ),
+                            ],
+                          ),
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // PIP's unique still matching the vibe!
+                              SizedBox(
+                                height: 48,
+                                width: 48,
+                                child: CustomPaint(
+                                  size: const Size(44, 44),
+                                  painter: PipPainter(
+                                    state: PipState.happy,
+                                    mouthOpen: 0.0,
+                                    gearRotation: 0.0,
+                                    theme: theme,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 12),
+                              // Title
+                              Text(
+                                story.title,
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.textDark,
+                                ),
+                              ),
+                              const SizedBox(height: 4),
+                              // Emoji
+                              Text(
+                                theme.emoji,
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                
+                const SizedBox(height: 16),
+                
+                // Close button
+                BubblyButton.text(
+                  onPressed: () => Navigator.of(dialogContext).pop(),
+                  label: 'Close ❌',
+                  backgroundColor: AppColors.coralOrange,
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -31,6 +191,8 @@ class QuizRenderer extends ConsumerWidget {
 
     // Success State Dashboard layout
     if (quizState.status == QuizStatus.success) {
+      final storyNotifier = ref.read(storyBuddyNotifierProvider.notifier);
+      
       return FadeInTransition(
         child: GlassCard(
           borderColor: AppColors.successGreen.withOpacity(0.5),
@@ -61,22 +223,29 @@ class QuizRenderer extends ConsumerWidget {
               const SizedBox(height: 24),
               BubblyButton.text(
                 onPressed: () {
-                  ref.read(quizNotifierProvider.notifier).reset();
-                  ref.read(quizNotifierProvider.notifier).revealQuiz();
-                  ref.read(pipStateProvider.notifier).updateState(PipState.listening);
+                  storyNotifier.selectNextRandomStory();
                 },
-                label: 'Retake Quiz 🔄',
+                label: 'Play Next Story',
                 backgroundColor: AppColors.primaryPurple,
-                icon: Icons.replay,
+                icon: Icons.skip_next_rounded,
               ),
               const SizedBox(height: 12),
               BubblyButton.text(
                 onPressed: () {
-                  ref.read(storyBuddyNotifierProvider.notifier).reset();
+                  _showChooseStoryDialog(context, ref, storyState.allStories);
                 },
-                label: 'Start Adventure Over 📖',
+                label: 'Choose Story',
                 backgroundColor: AppColors.skyBlue,
-                icon: Icons.home,
+                icon: Icons.grid_view_rounded,
+              ),
+              const SizedBox(height: 12),
+              BubblyButton.text(
+                onPressed: () {
+                  storyNotifier.replayCurrentStory();
+                },
+                label: 'Play Again',
+                backgroundColor: AppColors.mintGreen,
+                icon: Icons.replay_rounded,
               ),
             ],
           ),

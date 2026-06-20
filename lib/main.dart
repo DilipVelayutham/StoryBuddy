@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/constants/app_strings.dart';
 import 'core/theme/app_theme.dart';
-import 'features/story_buddy/presentation/screens/story_buddy_screen.dart';
+import 'features/story_buddy/presentation/screens/splash_screen.dart';
 
 void main() {
   // Capture Flutter framework errors
@@ -35,7 +35,7 @@ class StoryBuddyApp extends StatelessWidget {
       title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      home: const StoryBuddyScreen(),
+      home: const SplashScreen(),
     );
   }
 }

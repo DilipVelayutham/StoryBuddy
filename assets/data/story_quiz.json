@@ -1,55 +1,412 @@
-{
-  "story": "Once upon a time, a clever little robot named Pip lost his shiny blue gear in the Whispering Woods...",
-  "quizzes": [
-    {
-      "question": "What colour was Pip the Robot's lost gear?",
-      "options": ["Red", "Green", "Blue", "Yellow"],
-      "answer": "Blue"
-    },
-    {
-      "question": "What kind of creature or object is Pip?",
-      "options": ["A magical fairy", "A clever little robot", "A wild animal", "A flying spaceship"],
-      "answer": "A clever little robot"
-    },
-    {
-      "question": "Where did Pip lose his blue gear?",
-      "options": ["On the Moon", "In the Whispering Woods", "In the deep blue ocean", "At a robot school"],
-      "answer": "In the Whispering Woods"
-    },
-    {
-      "question": "How did the story describe the lost gear?",
-      "options": ["Rusty and old", "Shiny and blue", "Heavy and golden", "Tiny and green"],
-      "answer": "Shiny and blue"
-    },
-    {
-      "question": "What adjective was used to describe Pip?",
-      "options": ["Silly", "Clever", "Grumpy", "Sleepy"],
-      "answer": "Clever"
-    },
-    {
-      "question": "What kind of woods did Pip get lost in?",
-      "options": ["The Singing Woods", "The Whispering Woods", "The Silent Woods", "The Giant Woods"],
-      "answer": "The Whispering Woods"
-    },
-    {
-      "question": "Who is the main robot character of this story?",
-      "options": ["Pep", "Pop", "Pip", "Zip"],
-      "answer": "Pip"
-    },
-    {
-      "question": "What do you think gears help a robot do?",
-      "options": ["Sleep better", "Turn and move around", "Eat delicious food", "Read story books"],
-      "answer": "Turn and move around"
-    },
-    {
-      "question": "What color are gears usually made of?",
-      "options": ["Metallic silver or copper", "Rainbow colors", "Transparent glass", "Soft cotton"],
-      "answer": "Metallic silver or copper"
-    },
-    {
-      "question": "Who is guiding you through Pip's adventure today?",
-      "options": ["A scary dragon", "StoryBuddy and PIP", "A math teacher", "A security guard"],
-      "answer": "StoryBuddy and PIP"
+[
+  {
+    "id": "pip_blue_gear",
+    "title": "Pip's Blue Gear",
+    "story": "Once upon a time, a clever little robot named Pip lost his shiny blue gear in the Whispering Woods. He searched high and low, under leafy ferns and behind mossy rocks. With the help of a friendly ladybug named Dot, Pip found his gear glowing softly near a sparkling stream. Dot helped him pop it back in, and Pip's gears turned happily once more!",
+    "quizzes": [
+      {
+        "question": "What colour was Pip's lost gear?",
+        "options": ["Red", "Green", "Blue", "Yellow"],
+        "answer": "Blue"
+      },
+      {
+        "question": "What kind of creature or object is Pip?",
+        "options": ["A magical fairy", "A clever little robot", "A wild animal", "A flying spaceship"],
+        "answer": "A clever little robot"
+      },
+      {
+        "question": "Where did Pip lose his blue gear?",
+        "options": ["On the Moon", "In the Whispering Woods", "In the deep blue ocean", "At a robot school"],
+        "answer": "In the Whispering Woods"
+      },
+      {
+        "question": "How did the story describe the lost gear?",
+        "options": ["Rusty and old", "Shiny and blue", "Heavy and golden", "Tiny and green"],
+        "answer": "Shiny and blue"
+      },
+      {
+        "question": "What adjective was used to describe Pip?",
+        "options": ["Silly", "Clever", "Grumpy", "Sleepy"],
+        "answer": "Clever"
+      }
+    ],
+    "pipTheme": {
+      "primaryColor": "#E0E7FF",
+      "secondaryColor": "#4FC3F7",
+      "headColor": "#F5F3FF",
+      "gearColor": "#4FC3F7",
+      "antennaColor": "#4FC3F7",
+      "backgroundColors": ["#F5F3FF", "#E0E7FF", "#EEF2FF"],
+      "emoji": "⚙️"
     }
-  ]
-}
+  },
+  {
+    "id": "sparkys_cosmic_voyage",
+    "title": "Sparky's Cosmic Voyage",
+    "story": "Sparky the rocket robot loved visiting the stars. One night, he zoomed past a cluster of purple comets and landed on the glowing planet Neon-X. There, he met a bouncy star-pup named Twinkle who wanted to learn how to float. Sparky showed Twinkle his booster engines, and they danced together under the cosmic stardust before Sparky waved goodbye and flew home.",
+    "quizzes": [
+      {
+        "question": "What is Sparky's vehicle type or role?",
+        "options": ["A submarine robot", "A rocket robot", "A garbage collector", "A garden bot"],
+        "answer": "A rocket robot"
+      },
+      {
+        "question": "Which planet did Sparky land on?",
+        "options": ["Mars", "Jupiter", "Neon-X", "Planet Rock"],
+        "answer": "Neon-X"
+      },
+      {
+        "question": "Who did Sparky meet on the planet?",
+        "options": ["A scary dragon", "A friendly astronaut", "A star-pup named Twinkle", "A sleepy turtle"],
+        "answer": "A star-pup named Twinkle"
+      },
+      {
+        "question": "What did Sparky show to Twinkle?",
+        "options": ["His favorite book", "His booster engines", "A shiny diamond", "A plate of cookies"],
+        "answer": "His booster engines"
+      },
+      {
+        "question": "Under what did they dance together?",
+        "options": ["Rain", "Cosmic stardust", "A giant umbrella", "A dark cloud"],
+        "answer": "Cosmic stardust"
+      }
+    ],
+    "pipTheme": {
+      "primaryColor": "#8B5CF6",
+      "secondaryColor": "#FF4081",
+      "headColor": "#E1BEE7",
+      "gearColor": "#FF4081",
+      "antennaColor": "#FF4081",
+      "backgroundColors": ["#0B001A", "#1A0826", "#2D0B4E"],
+      "emoji": "🚀"
+    }
+  },
+  {
+    "id": "corals_deep_sea",
+    "title": "Coral's Deep Sea Discovery",
+    "story": "Deep in the turquoise ocean, a little submarine bot named Coral was searching for bubbly pearls. She slid past wavy green seaweed and met a giggling octopus named Ollie. Ollie pointed his tentacles toward a sparkling golden chest hidden in a coral reef. Inside, Coral found a beautiful rainbow pearl that lit up the dark ocean floor, making everyone smile.",
+    "quizzes": [
+      {
+        "question": "What type of bot is Coral?",
+        "options": ["A flying bot", "A digging bot", "A submarine bot", "A cooking bot"],
+        "answer": "A submarine bot"
+      },
+      {
+        "question": "What was Coral searching for?",
+        "options": ["Lost keys", "Bubbly pearls", "Sunken ships", "Yummy fish"],
+        "answer": "Bubbly pearls"
+      },
+      {
+        "question": "Who did Coral meet in the seaweed?",
+        "options": ["A great white shark", "A giggling octopus named Ollie", "A mermaid queen", "A grumpy crab"],
+        "answer": "A giggling octopus named Ollie"
+      },
+      {
+        "question": "Where was the golden chest hidden?",
+        "options": ["In a dark cave", "Under a big ship", "In a coral reef", "On the sandy beach"],
+        "answer": "In a coral reef"
+      },
+      {
+        "question": "What was inside the golden chest?",
+        "options": ["Gold coins", "A beautiful rainbow pearl", "A secret map", "A shiny key"],
+        "answer": "A beautiful rainbow pearl"
+      }
+    ],
+    "pipTheme": {
+      "primaryColor": "#008080",
+      "secondaryColor": "#40E0D0",
+      "headColor": "#E0F2F1",
+      "gearColor": "#40E0D0",
+      "antennaColor": "#40E0D0",
+      "backgroundColors": ["#E0F7FA", "#80DEEA", "#00ACC1"],
+      "emoji": "🐙"
+    }
+  },
+  {
+    "id": "rustys_dino_dig",
+    "title": "Rusty's Dino Dig",
+    "story": "Rusty the yellow explorer bot loved digging in the mud. In the Sunny Valley, he used his mechanical shovel to dig a deep hole. Clink! His shovel hit something hard. It was a giant fossilized dinosaur footprint! A little green lizard named Rex ran over and cheered. Rusty and Rex spent the afternoon dusting the fossil, proud of their prehistoric discovery.",
+    "quizzes": [
+      {
+        "question": "What color is Rusty the explorer bot?",
+        "options": ["Blue", "Green", "Yellow", "Red"],
+        "answer": "Yellow"
+      },
+      {
+        "question": "What did Rusty use to dig the hole?",
+        "options": ["A spoon", "A big tractor", "A mechanical shovel", "His bare hands"],
+        "answer": "A mechanical shovel"
+      },
+      {
+        "question": "What did Rusty find in the hole?",
+        "options": ["A treasure chest", "A fossilized dinosaur footprint", "A pile of gold", "A hidden cave"],
+        "answer": "A fossilized dinosaur footprint"
+      },
+      {
+        "question": "What was the name of the lizard who cheered?",
+        "options": ["Max", "Rex", "Pip", "Leo"],
+        "answer": "Rex"
+      },
+      {
+        "question": "Where did the dig take place?",
+        "options": ["In the Whispering Woods", "On the Moon", "In the Sunny Valley", "Near the ocean"],
+        "answer": "In the Sunny Valley"
+      }
+    ],
+    "pipTheme": {
+      "primaryColor": "#8B5A2B",
+      "secondaryColor": "#81C784",
+      "headColor": "#F5F5DC",
+      "gearColor": "#81C784",
+      "antennaColor": "#81C784",
+      "backgroundColors": ["#E8F5E9", "#C8E6C9", "#A5D6A7"],
+      "emoji": "🦖"
+    }
+  },
+  {
+    "id": "zooms_sky_race",
+    "title": "Zoom's Sky Race",
+    "story": "Zoom, a sleek flying robot, was ready for the annual Great Sky Race. The wind was blowing, and fluffy white clouds covered the sky. Zoom activated his wing boosters and soared high above the mountaintops. He zipped through a beautiful glowing rainbow and crossed the finish line first! All the birds chirped and flapped their wings to celebrate Zoom's big win.",
+    "quizzes": [
+      {
+        "question": "What is Zoom?",
+        "options": ["A slow crawling robot", "A sleek flying robot", "An underwater robot", "A fire truck robot"],
+        "answer": "A sleek flying robot"
+      },
+      {
+        "question": "What race was Zoom participating in?",
+        "options": ["The Deep Sea Race", "The Great Sky Race", "The Jungle Run", "The Moon Jump"],
+        "answer": "The Great Sky Race"
+      },
+      {
+        "question": "What did Zoom activate to fly fast?",
+        "options": ["His propeller", "His wing boosters", "His wheels", "His solar panel"],
+        "answer": "His wing boosters"
+      },
+      {
+        "question": "What did Zoom fly through in the sky?",
+        "options": ["A dark storm cloud", "A flock of geese", "A glowing rainbow", "A giant balloon"],
+        "answer": "A glowing rainbow"
+      },
+      {
+        "question": "Who cheered and flapped their wings at the end?",
+        "options": ["The clouds", "The mountains", "The birds", "The other racers"],
+        "answer": "The birds"
+      }
+    ],
+    "pipTheme": {
+      "primaryColor": "#FF7043",
+      "secondaryColor": "#FFCA28",
+      "headColor": "#FFF3E0",
+      "gearColor": "#FFCA28",
+      "antennaColor": "#FFCA28",
+      "backgroundColors": ["#FFF3E0", "#FFE0B2", "#FFCC80"],
+      "emoji": "✈️"
+    }
+  },
+  {
+    "id": "bellas_bubble_kingdom",
+    "title": "Bella's Bubble Kingdom",
+    "story": "Bella the magic robot lived in a castle made of pink bubbles. Every day, she blew bubble balloons that floated to the sky. One afternoon, a cute bluebird got its wing stuck in a sticky branch. Bella blew a giant bouncy bubble that lifted the bird gently and freed it! The bird sang a sweet song of thanks, and Bella blew rainbow bubbles to celebrate.",
+    "quizzes": [
+      {
+        "question": "What is Bella's castle made of?",
+        "options": ["Hard stones", "Green leaves", "Pink bubbles", "Sparkly ice"],
+        "answer": "Pink bubbles"
+      },
+      {
+        "question": "What does Bella blow every day?",
+        "options": ["Golden horns", "Bubble balloons", "Magic dust", "Paper airplanes"],
+        "answer": "Bubble balloons"
+      },
+      {
+        "question": "Who got stuck in a sticky branch?",
+        "options": ["A squirrel", "A bluebird", "A butterfly", "A kitten"],
+        "answer": "A bluebird"
+      },
+      {
+        "question": "How did Bella free the bird?",
+        "options": ["With a pair of scissors", "With a ladder", "With a giant bouncy bubble", "With a magic wand"],
+        "answer": "With a giant bouncy bubble"
+      },
+      {
+        "question": "What color were the bubbles Bella blew to celebrate?",
+        "options": ["Pink", "Blue", "Gold", "Rainbow"],
+        "answer": "Rainbow"
+      }
+    ],
+    "pipTheme": {
+      "primaryColor": "#F06292",
+      "secondaryColor": "#E040FB",
+      "headColor": "#FCE4EC",
+      "gearColor": "#E040FB",
+      "antennaColor": "#E040FB",
+      "backgroundColors": ["#FCE4EC", "#F8BBD0", "#F48FB1"],
+      "emoji": "🫧"
+    }
+  },
+  {
+    "id": "glows_neon_cave",
+    "title": "Glow's Neon Cave",
+    "story": "Glow was a robot with a shiny head lamp who loved exploring dark caves. He marched into the Echoing Cave and turned on his bright light. Suddenly, the cave walls sparkled with millions of glowing green crystals! A friendly bat named Flappy fluttered down and showed Glow a secret path leading to an underground waterfall that sparkled like diamonds.",
+    "quizzes": [
+      {
+        "question": "What special tool does Glow have on his head?",
+        "options": ["A propeller", "A head lamp", "A magic hat", "A camera"],
+        "answer": "A head lamp"
+      },
+      {
+        "question": "What cave did Glow explore?",
+        "options": ["The Whispering Cave", "The Echoing Cave", "The Ice Cave", "The Crystal Cave"],
+        "answer": "The Echoing Cave"
+      },
+      {
+        "question": "What made the cave walls sparkle?",
+        "options": ["Golden coins", "Glowing green crystals", "Colorful paint", "Tiny stars"],
+        "answer": "Glowing green crystals"
+      },
+      {
+        "question": "Who showed Glow the secret path?",
+        "options": ["A sleepy spider", "A friendly bat named Flappy", "A little frog", "A wise owl"],
+        "answer": "A friendly bat named Flappy"
+      },
+      {
+        "question": "What did the secret path lead to?",
+        "options": ["A treasure chest", "An underground waterfall", "A secret exit", "A sleeping bear"],
+        "answer": "An underground waterfall"
+      }
+    ],
+    "pipTheme": {
+      "primaryColor": "#1B5E20",
+      "secondaryColor": "#CCFF00",
+      "headColor": "#E8F5E9",
+      "gearColor": "#CCFF00",
+      "antennaColor": "#CCFF00",
+      "backgroundColors": ["#121212", "#1E2A1E", "#0C1F0C"],
+      "emoji": "💎"
+    }
+  },
+  {
+    "id": "nuttys_treehouse_carnival",
+    "title": "Nutty's Treehouse Carnival",
+    "story": "Nutty the squirrel robot was building a carnival in the tallest oak tree. He hung colorful lights on the branches and set up a tiny ferris wheel. The forest animals came from all around to play. Nutty handed out cups of sweet acorn juice. Everyone took turns spinning the wheel, laughing and cheering as the carnival lights glowed brightly into the warm night.",
+    "quizzes": [
+      {
+        "question": "What kind of animal bot is Nutty?",
+        "options": ["A beaver robot", "A squirrel robot", "A bear robot", "A rabbit robot"],
+        "answer": "A squirrel robot"
+      },
+      {
+        "question": "Where did Nutty build the carnival?",
+        "options": ["In a dark cave", "Near the river", "In the tallest oak tree", "On the grass"],
+        "answer": "In the tallest oak tree"
+      },
+      {
+        "question": "What did Nutty set up for the animals to play on?",
+        "options": ["A big slide", "A tiny ferris wheel", "A bouncy castle", "A swing set"],
+        "answer": "A tiny ferris wheel"
+      },
+      {
+        "question": "What drink did Nutty hand out?",
+        "options": ["Apple juice", "Orange soda", "Acorn juice", "Sweet water"],
+        "answer": "Acorn juice"
+      },
+      {
+        "question": "When did the carnival lights glow?",
+        "options": ["During the morning", "At lunchtime", "Into the warm night", "At sunset"],
+        "answer": "Into the warm night"
+      }
+    ],
+    "pipTheme": {
+      "primaryColor": "#E64A19",
+      "secondaryColor": "#FFD54F",
+      "headColor": "#FFF3E0",
+      "gearColor": "#FFD54F",
+      "antennaColor": "#FFD54F",
+      "backgroundColors": ["#FFF8E1", "#FFE082", "#FFD54F"],
+      "emoji": "🐿️"
+    }
+  },
+  {
+    "id": "chippys_cookie_bakery",
+    "title": "Chippy's Cookie Bakery",
+    "story": "Chippy the chef robot loved baking sweet treats. Today, he was making giant chocolate chip cookies in his cozy kitchen. He rolled out the dough and sprinkled sweet chocolate chips on top. A hungry puppy named Wags smelled the cookies and sat by the oven. When they were done, Chippy shared a special doggy-cookie with Wags, who wagged his tail happily.",
+    "quizzes": [
+      {
+        "question": "What is Chippy's job?",
+        "options": ["A builder robot", "A chef robot", "A cleaner robot", "A teacher robot"],
+        "answer": "A chef robot"
+      },
+      {
+        "question": "What was Chippy baking today?",
+        "options": ["Strawberry cupcakes", "Blueberry pies", "Chocolate chip cookies", "Sweet bread"],
+        "answer": "Chocolate chip cookies"
+      },
+      {
+        "question": "What did Chippy sprinkle on top of the dough?",
+        "options": ["Colored sprinkles", "Sweet sugar", "Chocolate chips", "Fruit pieces"],
+        "answer": "Chocolate chips"
+      },
+      {
+        "question": "Who sat by the oven waiting for cookies?",
+        "options": ["A cat named Whiskers", "A puppy named Wags", "A bird named Chirpy", "A bunny named Hop"],
+        "answer": "A puppy named Wags"
+      },
+      {
+        "question": "How did Wags show his happiness?",
+        "options": ["He wagged his tail", "He barked loudly", "He jumped up", "He ran in circles"],
+        "answer": "He wagged his tail"
+      }
+    ],
+    "pipTheme": {
+      "primaryColor": "#8D6E63",
+      "secondaryColor": "#F48FB1",
+      "headColor": "#EFEBE9",
+      "gearColor": "#F48FB1",
+      "antennaColor": "#F48FB1",
+      "backgroundColors": ["#EFEBE9", "#D7CCC8", "#BCAAA4"],
+      "emoji": "🍪"
+    }
+  },
+  {
+    "id": "volts_thunder_castle",
+    "title": "Volt's Thunder Castle",
+    "story": "Volt the electric bot lived in a castle high in the storm clouds. He loved catching lightning bolts and turning them into friendly glow-bugs. During a big storm, the castle's power went out. Volt pointed his antenna at the main generator and zapped it with a spark of energy! The castle lights flashed back on, and the glow-bugs danced in celebration.",
+    "quizzes": [
+      {
+        "question": "Where did Volt the electric bot live?",
+        "options": ["In a cave", "In a castle in the storm clouds", "In a forest treehouse", "Under the deep sea"],
+        "answer": "In a castle in the storm clouds"
+      },
+      {
+        "question": "What does Volt turn lightning bolts into?",
+        "options": ["Vibrant balloons", "Electric toys", "Friendly glow-bugs", "Shiny stars"],
+        "answer": "Friendly glow-bugs"
+      },
+      {
+        "question": "What happened to the castle during the big storm?",
+        "options": ["It started to rain inside", "The power went out", "The walls shook", "It floated away"],
+        "answer": "The power went out"
+      },
+      {
+        "question": "Where did Volt point his antenna to fix the power?",
+        "options": ["At the sky", "At the main generator", "At the front door", "At the glow-bugs"],
+        "answer": "At the main generator"
+      },
+      {
+        "question": "How did the glow-bugs celebrate when the power returned?",
+        "options": ["They sang songs", "They danced", "They flew away", "They hid under the bed"],
+        "answer": "They danced"
+      }
+    ],
+    "pipTheme": {
+      "primaryColor": "#4A148C",
+      "secondaryColor": "#FFD54F",
+      "headColor": "#D1C4E9",
+      "gearColor": "#FFD54F",
+      "antennaColor": "#FFD54F",
+      "backgroundColors": ["#311B92", "#4527A0", "#512DA8"],
+      "emoji": "⚡"
+    }
+  }
+]

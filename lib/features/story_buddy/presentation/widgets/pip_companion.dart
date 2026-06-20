@@ -1,14 +1,17 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../../../../core/constants/app_colors.dart';
+import '../../data/models/story_model.dart';
 import '../providers/pip_provider.dart';
 
 class PipCompanion extends StatefulWidget {
   final PipState state;
+  final StoryModel? story;
 
   const PipCompanion({
     super.key,
     required this.state,
+    this.story,
   });
 
   @override
@@ -134,6 +137,7 @@ class _PipCompanionState extends State<PipCompanion> with TickerProviderStateMix
                     state: widget.state,
                     mouthOpen: _speakingController.value,
                     gearRotation: _gearController.value * 2 * math.pi,
+                    theme: widget.story?.pipTheme,
                   ),
                 ),
               ),
@@ -149,11 +153,13 @@ class PipPainter extends CustomPainter {
   final PipState state;
   final double mouthOpen;
   final double gearRotation;
+  final PipThemeModel? theme;
 
   PipPainter({
     required this.state,
     required this.mouthOpen,
     required this.gearRotation,
+    this.theme,
   });
 
   @override
@@ -161,15 +167,21 @@ class PipPainter extends CustomPainter {
     final cx = size.width / 2;
     final cy = size.height / 2;
 
+    // Colors
+    final primaryColor = theme?.primaryColor ?? AppColors.lavender;
+    final secondaryColor = theme?.secondaryColor ?? AppColors.skyBlue;
+    final headColor = theme?.headColor ?? AppColors.primaryLight;
+    final gearColor = theme?.gearColor ?? AppColors.skyBlue;
+
     // Outer Glow / Shadow
     final shadowPaint = Paint()
-      ..color = AppColors.primaryPurple.withOpacity(0.15)
+      ..color = (theme?.primaryColor ?? AppColors.primaryPurple).withOpacity(0.15)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12);
     canvas.drawCircle(Offset(cx, cy + 10), 55, shadowPaint);
 
     // 1. Draw Neck
     final neckPaint = Paint()
-      ..color = AppColors.lavender
+      ..color = primaryColor
       ..style = PaintingStyle.fill;
     canvas.drawRRect(
       RRect.fromRectAndRadius(
@@ -181,10 +193,10 @@ class PipPainter extends CustomPainter {
 
     // 2. Draw Ears
     final earPaint = Paint()
-      ..color = AppColors.lavender
+      ..color = primaryColor
       ..style = PaintingStyle.fill;
     final earDetailPaint = Paint()
-      ..color = AppColors.skyBlue
+      ..color = secondaryColor
       ..style = PaintingStyle.fill;
 
     // Left Ear
@@ -209,14 +221,14 @@ class PipPainter extends CustomPainter {
 
     // 3. Draw Antenna
     final antennaLinePaint = Paint()
-      ..color = AppColors.lavender
+      ..color = primaryColor
       ..strokeWidth = 5
       ..style = PaintingStyle.stroke
       ..strokeCap = StrokeCap.round;
     canvas.drawLine(Offset(cx, cy - 45), Offset(cx, cy - 65), antennaLinePaint);
 
     // Antenna Bulb
-    Color bulbColor = AppColors.skyBlue;
+    Color bulbColor = secondaryColor;
     if (state == PipState.speaking) bulbColor = AppColors.candyPink;
     if (state == PipState.thinking) bulbColor = AppColors.sunshineYellow;
     if (state == PipState.celebrating || state == PipState.happy) {
@@ -236,10 +248,10 @@ class PipPainter extends CustomPainter {
 
     // 4. Draw Head (Glassmorphic look)
     final headPaint = Paint()
-      ..color = AppColors.primaryLight
+      ..color = headColor
       ..style = PaintingStyle.fill;
     final headBorderPaint = Paint()
-      ..color = AppColors.primaryPurple.withOpacity(0.5)
+      ..color = (theme?.primaryColor ?? AppColors.primaryPurple).withOpacity(0.5)
       ..strokeWidth = 2.5
       ..style = PaintingStyle.stroke;
 
@@ -274,7 +286,7 @@ class PipPainter extends CustomPainter {
     final eyePaint = Paint()..style = PaintingStyle.fill;
     
     // Choose eye glow color
-    Color eyeColor = AppColors.skyBlue;
+    Color eyeColor = secondaryColor;
     if (state == PipState.thinking) eyeColor = AppColors.sunshineYellow;
     if (state == PipState.celebrating || state == PipState.happy) {
       eyeColor = AppColors.mintGreen;
@@ -334,7 +346,7 @@ class PipPainter extends CustomPainter {
     if (state == PipState.speaking) {
       // Animate mouth opening oval shape
       final speakingMouthPaint = Paint()
-        ..color = AppColors.skyBlue
+        ..color = secondaryColor
         ..style = PaintingStyle.fill;
       canvas.drawRRect(
         RRect.fromRectAndRadius(
@@ -363,7 +375,7 @@ class PipPainter extends CustomPainter {
     } else if (state == PipState.listening) {
       // O mouth showing attentive listening
       final listeningMouthPaint = Paint()
-        ..color = AppColors.skyBlue
+        ..color = secondaryColor
         ..style = PaintingStyle.stroke
         ..strokeWidth = 2.5;
       canvas.drawCircle(Offset(cx, cy - 2), 4, listeningMouthPaint);
@@ -377,10 +389,10 @@ class PipPainter extends CustomPainter {
 
     // 8. Draw Body (Chest Panel with a window showing the gear)
     final bodyPaint = Paint()
-      ..color = AppColors.lavender
+      ..color = primaryColor
       ..style = PaintingStyle.fill;
     final bodyBorderPaint = Paint()
-      ..color = AppColors.primaryPurple.withOpacity(0.4)
+      ..color = (theme?.primaryColor ?? AppColors.primaryPurple).withOpacity(0.4)
       ..strokeWidth = 2.5
       ..style = PaintingStyle.stroke;
 
@@ -433,8 +445,8 @@ class PipPainter extends CustomPainter {
       // When happy/celebrating, gear glows vibrant warm pink/coral
       gearPaint.color = AppColors.candyPink;
     } else {
-      // Standard state: the shiny blue gear from the story!
-      gearPaint.color = AppColors.skyBlue;
+      // Standard state: the shiny gear!
+      gearPaint.color = gearColor;
     }
 
     // Draw Gear Hub
@@ -466,6 +478,7 @@ class PipPainter extends CustomPainter {
   bool shouldRepaint(covariant PipPainter oldDelegate) {
     return oldDelegate.state != state ||
         oldDelegate.mouthOpen != mouthOpen ||
-        oldDelegate.gearRotation != gearRotation;
+        oldDelegate.gearRotation != gearRotation ||
+        oldDelegate.theme != theme;
   }
 }

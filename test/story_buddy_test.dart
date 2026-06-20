@@ -88,8 +88,8 @@ void main() {
     test('Initial states should be correct', () async {
       final container = ProviderContainer();
       
-      // Await loadStory to allow async asset mock loading to complete
-      await container.read(storyBuddyNotifierProvider.notifier).loadStory();
+      // Await loadStories to allow async asset mock loading to complete
+      await container.read(storyBuddyNotifierProvider.notifier).loadStories();
 
       final storyState = container.read(storyBuddyNotifierProvider);
       final quizState = container.read(quizNotifierProvider);

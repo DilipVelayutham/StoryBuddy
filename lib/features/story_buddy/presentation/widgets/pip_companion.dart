@@ -175,7 +175,7 @@ class PipPainter extends CustomPainter {
 
     // Outer Glow / Shadow
     final shadowPaint = Paint()
-      ..color = (theme?.primaryColor ?? AppColors.primaryPurple).withOpacity(0.15)
+      ..color = (theme?.primaryColor ?? AppColors.primaryPurple).withValues(alpha: 0.15)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12);
     canvas.drawCircle(Offset(cx, cy + 10), 55, shadowPaint);
 
@@ -242,7 +242,7 @@ class PipPainter extends CustomPainter {
 
     // Bulb glow
     final bulbGlowPaint = Paint()
-      ..color = bulbColor.withOpacity(0.4)
+      ..color = bulbColor.withValues(alpha: 0.4)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6);
     canvas.drawCircle(Offset(cx, cy - 72), 12, bulbGlowPaint);
 
@@ -251,7 +251,7 @@ class PipPainter extends CustomPainter {
       ..color = headColor
       ..style = PaintingStyle.fill;
     final headBorderPaint = Paint()
-      ..color = (theme?.primaryColor ?? AppColors.primaryPurple).withOpacity(0.5)
+      ..color = (theme?.primaryColor ?? AppColors.primaryPurple).withValues(alpha: 0.5)
       ..strokeWidth = 2.5
       ..style = PaintingStyle.stroke;
 
@@ -392,7 +392,7 @@ class PipPainter extends CustomPainter {
       ..color = primaryColor
       ..style = PaintingStyle.fill;
     final bodyBorderPaint = Paint()
-      ..color = (theme?.primaryColor ?? AppColors.primaryPurple).withOpacity(0.4)
+      ..color = (theme?.primaryColor ?? AppColors.primaryPurple).withValues(alpha: 0.4)
       ..strokeWidth = 2.5
       ..style = PaintingStyle.stroke;
 
@@ -413,7 +413,7 @@ class PipPainter extends CustomPainter {
 
     // Inner Chest Screen
     final chestScreenPaint = Paint()
-      ..color = AppColors.textDark.withOpacity(0.9)
+      ..color = AppColors.textDark.withValues(alpha: 0.9)
       ..style = PaintingStyle.fill;
     canvas.drawRRect(
       RRect.fromRectAndRadius(

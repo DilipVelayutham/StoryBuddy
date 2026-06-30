@@ -144,7 +144,6 @@ class StoryContent extends ConsumerWidget {
         );
 
       case StoryStatus.initial:
-      default:
         return Center(
           child: BubblyButton.text(
             onPressed: () => notifier.startReading(),

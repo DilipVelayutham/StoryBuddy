@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:story_buddy/features/story_buddy/data/models/story_model.dart';
-import 'package:story_buddy/features/story_buddy/data/models/quiz_model.dart';
 import 'package:story_buddy/features/story_buddy/presentation/providers/story_provider.dart';
 import 'package:story_buddy/features/story_buddy/presentation/providers/quiz_provider.dart';
 

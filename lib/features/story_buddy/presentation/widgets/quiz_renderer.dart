@@ -36,7 +36,7 @@ class QuizRenderer extends ConsumerWidget {
               border: Border.all(color: Colors.white, width: 3),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.15),
+                  color: Colors.black.withValues(alpha: 0.15),
                   blurRadius: 20,
                   offset: const Offset(0, 10),
                 ),
@@ -95,18 +95,18 @@ class QuizRenderer extends ConsumerWidget {
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                               colors: [
-                                theme.primaryColor.withOpacity(0.2),
-                                theme.secondaryColor.withOpacity(0.2),
+                                theme.primaryColor.withValues(alpha: 0.2),
+                                theme.secondaryColor.withValues(alpha: 0.2),
                               ],
                             ),
                             borderRadius: BorderRadius.circular(24),
                             border: Border.all(
-                              color: theme.primaryColor.withOpacity(0.5),
+                              color: theme.primaryColor.withValues(alpha: 0.5),
                               width: 2,
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: theme.primaryColor.withOpacity(0.1),
+                                color: theme.primaryColor.withValues(alpha: 0.1),
                                 blurRadius: 8,
                                 offset: const Offset(0, 4),
                               ),
@@ -195,8 +195,8 @@ class QuizRenderer extends ConsumerWidget {
       
       return FadeInTransition(
         child: GlassCard(
-          borderColor: AppColors.successGreen.withOpacity(0.5),
-          color: AppColors.successGreen.withOpacity(0.1),
+          borderColor: AppColors.successGreen.withValues(alpha: 0.5),
+          color: AppColors.successGreen.withValues(alpha: 0.1),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -309,24 +309,24 @@ class QuizRenderer extends ConsumerWidget {
                 final isCorrect = quiz.answer.trim().toLowerCase() == option.trim().toLowerCase();
                 
                 // Color coding based on validation state
-                Color optionBgColor = Colors.white.withOpacity(0.5);
+                Color optionBgColor = Colors.white.withValues(alpha: 0.5);
                 Color optionBorderColor = AppColors.glassCardBorder;
                 Color textColor = AppColors.textDark;
                 Widget? feedbackIcon;
 
                 if (isSelected) {
                   if (quizState.status == QuizStatus.correctAnswer) {
-                    optionBgColor = AppColors.successGreen.withOpacity(0.9);
+                    optionBgColor = AppColors.successGreen.withValues(alpha: 0.9);
                     optionBorderColor = AppColors.successGreen;
                     textColor = Colors.white;
                     feedbackIcon = const Icon(Icons.check_circle, color: Colors.white, size: 24);
                   } else if (quizState.status == QuizStatus.wrongAnswer) {
-                    optionBgColor = AppColors.errorRed.withOpacity(0.9);
+                    optionBgColor = AppColors.errorRed.withValues(alpha: 0.9);
                     optionBorderColor = AppColors.errorRed;
                     textColor = Colors.white;
                     feedbackIcon = const Icon(Icons.cancel, color: Colors.white, size: 24);
                   } else {
-                    optionBgColor = AppColors.skyBlue.withOpacity(0.8);
+                    optionBgColor = AppColors.skyBlue.withValues(alpha: 0.8);
                     optionBorderColor = AppColors.skyBlue;
                     textColor = Colors.white;
                     feedbackIcon = const SizedBox(
@@ -343,7 +343,7 @@ class QuizRenderer extends ConsumerWidget {
                 // If another option was marked correct, highlight it to guide the user
                 final showCorrectHighlight = quizState.status == QuizStatus.correctAnswer && isCorrect && !isSelected;
                 if (showCorrectHighlight) {
-                  optionBgColor = AppColors.successGreen.withOpacity(0.35);
+                  optionBgColor = AppColors.successGreen.withValues(alpha: 0.35);
                   optionBorderColor = AppColors.successGreen;
                 }
 
@@ -356,6 +356,7 @@ class QuizRenderer extends ConsumerWidget {
                         ? null // block input during verification
                         : () => ref.read(quizNotifierProvider.notifier).submitAnswer(option),
                     backgroundColor: optionBgColor,
+                    borderColor: optionBorderColor,
                     borderRadius: 16.0,
                     padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
                     child: Row(
@@ -375,7 +376,7 @@ class QuizRenderer extends ConsumerWidget {
                     ),
                   ),
                 );
-              }).toList(),
+              }),
               
               // Helper text feedback on answers
               if (quizState.status == QuizStatus.correctAnswer) ...[

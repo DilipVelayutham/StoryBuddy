@@ -13,7 +13,7 @@ class AppTheme {
         primary: AppColors.primaryPurple,
         secondary: AppColors.skyBlue,
         tertiary: AppColors.sunshineYellow,
-        background: AppColors.primaryLight,
+        surface: AppColors.primaryLight,
         error: AppColors.errorRed,
       ),
       scaffoldBackgroundColor: Colors.transparent,
@@ -72,7 +72,7 @@ class AppTheme {
             borderRadius: BorderRadius.circular(20),
           ),
           elevation: 4,
-          shadowColor: AppColors.primaryPurple.withOpacity(0.3),
+          shadowColor: AppColors.primaryPurple.withValues(alpha: 0.3),
         ),
       ),
     );

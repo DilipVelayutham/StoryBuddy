@@ -6,6 +6,7 @@ class BubblyButton extends StatefulWidget {
   final Widget child;
   final Color backgroundColor;
   final Color foregroundColor;
+  final Color borderColor;
   final double borderRadius;
   final EdgeInsetsGeometry padding;
 
@@ -15,6 +16,7 @@ class BubblyButton extends StatefulWidget {
     required this.child,
     this.backgroundColor = AppColors.primaryPurple,
     this.foregroundColor = AppColors.textLight,
+    this.borderColor = Colors.transparent,
     this.borderRadius = 20.0,
     this.padding = const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
   });
@@ -104,10 +106,14 @@ class _BubblyButtonState extends State<BubblyButton> {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(widget.borderRadius),
+            border: Border.all(
+              color: widget.borderColor,
+              width: 1.5,
+            ),
             boxShadow: isEnabled
                 ? [
                     BoxShadow(
-                      color: widget.backgroundColor.withOpacity(0.35),
+                      color: widget.backgroundColor.withValues(alpha: 0.35),
                       blurRadius: 10,
                       offset: const Offset(0, 5),
                     )
@@ -123,8 +129,8 @@ class _BubblyButtonState extends State<BubblyButton> {
               onTapUp: _onTapUp,
               onTapCancel: _onTapCancel,
               borderRadius: BorderRadius.circular(widget.borderRadius),
-              splashColor: Colors.white.withOpacity(0.2),
-              highlightColor: Colors.white.withOpacity(0.1),
+              splashColor: Colors.white.withValues(alpha: 0.2),
+              highlightColor: Colors.white.withValues(alpha: 0.1),
               child: Padding(
                 padding: widget.padding,
                 child: widget.child,

@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_strings.dart';
-import '../../../../core/extensions/context_extensions.dart';
 import '../../data/models/story_model.dart';
 import '../providers/pip_provider.dart';
 import '../providers/quiz_provider.dart';
@@ -190,7 +189,7 @@ class _StoryBuddyScreenState extends ConsumerState<StoryBuddyScreen> {
             height: 200,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: secondary.withOpacity(0.18),
+              color: secondary.withValues(alpha: 0.18),
             ),
           ),
         ),
@@ -204,7 +203,7 @@ class _StoryBuddyScreenState extends ConsumerState<StoryBuddyScreen> {
             height: 250,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: primary.withOpacity(0.12),
+              color: primary.withValues(alpha: 0.12),
             ),
           ),
         ),
@@ -218,7 +217,7 @@ class _StoryBuddyScreenState extends ConsumerState<StoryBuddyScreen> {
             height: 220,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: tertiary.withOpacity(0.18),
+              color: tertiary.withValues(alpha: 0.18),
             ),
           ),
         ),

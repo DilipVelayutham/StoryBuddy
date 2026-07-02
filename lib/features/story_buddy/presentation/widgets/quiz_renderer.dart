@@ -371,7 +371,7 @@ class QuizRenderer extends ConsumerWidget {
                             ),
                           ),
                         ),
-                        if (feedbackIcon != null) feedbackIcon,
+                        ?feedbackIcon,
                       ],
                     ),
                   ),

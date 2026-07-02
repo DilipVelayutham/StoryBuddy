@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StoryBuddy is a joyful Flutter storytelling companion for children with narrated stories, PIP the robot, and interactive comprehension quizzes.">
+  <meta name="theme-color" content="#8B5CF6">
+  <link rel="icon" type="image/png" href="../assets/logo/robo_logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>StoryBuddy - Magical Story Companion</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" data-header>
+    <a class="brand" href="#top" aria-label="StoryBuddy home">
+      <img src="../assets/logo/robo_logo.png" alt="" class="brand__mark">
+      <span>StoryBuddy</span>
+    </a>
+
+    <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" data-nav-toggle>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav-links" data-nav>
+      <a href="#features">Features</a>
+      <a href="#stories">Stories</a>
+      <a href="#screenshots">Screenshots</a>
+      <a class="nav-install" href="#install">Install</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero section-panel" aria-labelledby="hero-title">
+      <div class="hero__content">
+        <h4>Introducing...</h4>
+        <h1 id="hero-title">StoryBuddy</h1>
+        <p class="hero__lead">
+          A joyful Story companion where children listen to narrated adventures,
+          answer playful quizzes, and celebrate with PIP, a tiny robot guide built for focus,
+          imagination, and reading confidence.
+        </p>
+        <div class="hero__actions" aria-label="Primary actions">
+          <a class="button button--primary" href="#install">
+            Install
+          </a>
+          <a class="button button--secondary" href="#screenshots">
+            Screenshots
+          </a>
+        </div>
+        
+      </div>
+
+      <div class="hero__visual" aria-label="StoryBuddy app preview">
+        <div class="phone phone--hero">
+          <div class="phone__screen">
+            <div class="app-topbar">
+              <span>StoryBuddy</span>
+              <span class="signal-dot"></span>
+            </div>
+            <div class="pip-stage">
+              <img src="../assets/logo/robo_logo.png" alt="PIP robot companion" class="pip-logo">
+            </div>
+            <article class="glass-card story-card">
+              <div class="card-title">Our Adventure Story</div>
+              <p>
+                Pip searches the Whispering Woods for a shiny blue gear with help
+                from a friendly guide.
+              </p>
+              <button class="mini-button" type="button">Read Me a Story</button>
+            </article>
+            <article class="glass-card quiz-card">
+              <div class="question-tag">Question 1 of 5</div>
+              <br/>
+              <br/>
+              <h3>What colour was Pip's lost gear?</h3>
+              <div class="answer-grid">
+                <span>Red</span>
+                <span class="is-selected">Blue</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-wrap" id="features" aria-labelledby="features-title">
+      <div class="section-heading">
+        <p class="eyebrow">What it does</p>
+        <h2 id="features-title">Story time, quiz time, celebration time.</h2>
+      </div>
+
+      <div class="feature-map" aria-label="StoryBuddy learning journey">
+        <article class="map-stop map-stop--listen">
+          <span class="map-stop__badge" aria-hidden="true">1</span>
+          <div>
+            <h3>Kids listen to stories</h3>
+            <p>PIP reads each adventure aloud so children can settle in, follow the words, and enjoy the story world.</p>
+          </div>
+        </article>
+        <article class="map-stop map-stop--understand">
+          <span class="map-stop__badge" aria-hidden="true">2</span>
+          <div>
+            <h3>Understand the story</h3>
+            <p>Short, focused scenes help kids remember characters, places, and what happened next.</p>
+          </div>
+        </article>
+        <article class="map-stop map-stop--quiz">
+          <span class="map-stop__badge" aria-hidden="true">3</span>
+          <div>
+            <h3>Answer playful quizzes</h3>
+            <p>After listening, children answer story questions that turn comprehension into a cheerful challenge.</p>
+          </div>
+        </article>
+        <article class="map-stop map-stop--feedback">
+          <span class="map-stop__badge" aria-hidden="true">4</span>
+          <div>
+            <h3>Get instant feedback</h3>
+            <p>Right answers feel exciting, and missed answers gently invite another try with PIP beside them.</p>
+          </div>
+        </article>
+        <article class="map-stop map-stop--replay">
+          <span class="map-stop__badge" aria-hidden="true">5</span>
+          <div>
+            <h3>Replay favorite stories</h3>
+            <p>Kids can hear an adventure again, practice the quiz, and build confidence at their own pace.</p>
+          </div>
+        </article>
+        <article class="map-stop map-stop--worlds">
+          <span class="map-stop__badge" aria-hidden="true">6</span>
+          <div>
+            <h3>Pick new story worlds</h3>
+            <p>A colorful story selection menu lets children jump into forests, space, oceans, castles, and more.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-wrap split-section" id="stories" aria-labelledby="stories-title">
+      <div class="section-heading">
+        <p class="eyebrow">Story library</p>
+        <h2 id="stories-title">Ten themed adventures in one lightweight app.</h2>
+        <p>
+          Every story includes its own visual theme, companion color palette, narrative,
+          and five comprehension questions.
+        </p>
+      </div>
+
+      <div class="story-picker" aria-label="Story previews">
+        <div class="story-tabs" role="tablist" aria-label="Select a story" data-story-tabs>
+          <button class="story-tab is-active" type="button" data-story="0">Pip</button>
+          <button class="story-tab" type="button" data-story="1">Sparky</button>
+          <button class="story-tab" type="button" data-story="2">Coral</button>
+          <button class="story-tab" type="button" data-story="3">Rusty</button>
+          <button class="story-tab" type="button" data-story="4">Bella</button>
+        </div>
+        <article class="story-preview glass-card" data-story-preview>
+          <div class="story-preview__media">
+            <img src="../assets/logo/robo_logo.png" alt="StoryBuddy robot preview">
+          </div>
+          <div>
+            <p class="story-preview__label">Featured story</p>
+            <h3 data-story-title>Pip's Blue Gear</h3>
+            <p data-story-text>
+              A clever little robot follows clues through the Whispering Woods to find a shiny blue gear.
+            </p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-wrap" id="screenshots" aria-labelledby="screenshots-title">
+      <div class="section-heading">
+        <p class="eyebrow">Screenshots</p>
+        <h2 id="screenshots-title">A close look at the child-friendly flow.</h2>
+      </div>
+
+      <div class="screenshot-gallery">
+        <figure class="screenshot-card">
+          <img src="../assets/screenshots/1.png" alt="StoryBuddy splash screen">
+          <figcaption>Bright welcome screen with the StoryBuddy companion.</figcaption>
+        </figure>
+
+        <figure class="screenshot-card">
+          <img src="../assets/screenshots/2.jpeg" alt="StoryBuddy story narration screen">
+          <figcaption>Narrated story mode for listening and reading along.</figcaption>
+        </figure>
+
+        <figure class="screenshot-card">
+          <img src="../assets/screenshots/3.jpeg" alt="StoryBuddy quiz question screen">
+          <figcaption>Quiz questions check what kids understood.</figcaption>
+        </figure>
+
+        <figure class="screenshot-card">
+          <img src="../assets/screenshots/4.jpeg" alt="StoryBuddy answer feedback screen">
+          <figcaption>Instant feedback keeps the learning loop clear.</figcaption>
+        </figure>
+
+        <figure class="screenshot-card">
+          <img src="../assets/screenshots/5.jpeg" alt="StoryBuddy story selection screen">
+          <figcaption>Story selection opens more worlds to explore.</figcaption>
+        </figure>
+
+        <figure class="screenshot-card">
+          <img src="../assets/screenshots/6.jpeg" alt="StoryBuddy story world screen">
+          <figcaption>Each world has its own playful look and feel.</figcaption>
+        </figure>
+
+        <figure class="screenshot-card">
+          <img src="../assets/screenshots/7.jpeg" alt="StoryBuddy replay and quiz flow screen">
+          <figcaption>Replayable stories make practice easy.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section-wrap install-section" id="install" aria-labelledby="install-title">
+      <div class="section-heading">
+        <p class="eyebrow">Install</p>
+        <h2 id="install-title">Choose the build that fits your device.</h2>
+      </div>
+
+      <div class="install-grid install-grid--actions">
+        <article class="install-card install-card--primary">
+          <span class="install-icon" aria-hidden="true">APK</span>
+          <br/>
+          <br/>
+          <h3>Install StoryBuddy</h3>
+          <p>Download the Android application package and install StoryBuddy directly on your device.</p>
+          <a class="button button--primary install-download" href="../assets/downloads/StoryBuddy.apk" download>
+            Install App
+          </a>
+        </article>
+
+        <article class="install-card install-card--link">
+          <span class="install-icon" aria-hidden="true">GIT</span>
+          <h3>GitHub</h3>
+          <p>Open the source repository in a new tab when the project link is added.</p>
+          <a class="button button--secondary" href="https://github.com/DilipVelayutham/StoryBuddy" target="_blank" rel="noopener noreferrer">
+            Open GitHub
+          </a>
+        </article>
+
+        <article class="install-card install-card--link">
+          <span class="install-icon" aria-hidden="true">PLAY</span>
+          <h3>Demo Video</h3>
+          <p>Launch the walkthrough video in a new tab once the demo link is ready.</p>
+          <a class="button button--soft" href="https://drive.google.com/file/d/1a7AIVTSMLibVYfWcTxDYry6CwNTFH7X1/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+            Watch Demo
+          </a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <h3>StoryBuddy</h3>
+    </div>
+    <div class="logo-container">
+      <img src="../assets/logo/dv_logo.png" alt="DV Logo" style="height: 80px; width: 80px;">
+      <span class="tagline">A DV Techs' Product</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
